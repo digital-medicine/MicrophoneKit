@@ -27,7 +27,7 @@ import SoundAnalysis
     private let afterSave: (URL) -> Void
     private var onNewData: (Double) -> Void
     
-    init(fileName: String, afterSave: @escaping (URL) -> Void, onNewData: @escaping (Double) -> Void) {
+    public init(fileName: String, afterSave: @escaping (URL) -> Void, onNewData: @escaping (Double) -> Void) {
         self.fileName = fileName
         self.afterSave = afterSave
         self.onNewData = onNewData
@@ -36,7 +36,7 @@ import SoundAnalysis
         }
     }
     
-    func startRecording() {
+    public func startRecording() {
         print("🎙️ start analyze")
         do {
             try audioStreamManager.setupCaptureSession(using: audioInputManager.inputDevice)
@@ -62,7 +62,7 @@ import SoundAnalysis
         }
     }
     
-    func stopRecording() {
+    public func stopRecording() {
         print("🎙️ stop analyze")
         if let url = audioStorage.audioFile?.url {
             print("URL: \(url)")
@@ -72,7 +72,7 @@ import SoundAnalysis
         stopTimer()
     }
     
-    func restart() {
+    public func restart() {
         print("🎙️ stop analyze")
         if let url = audioStorage.audioFile?.url {
             print("URL: \(url)")
