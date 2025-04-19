@@ -12,6 +12,8 @@ import AVFoundation
 public actor Recorder {
     
     private var recorder: AVAudioRecorder?
+    
+    public init() {}
 
     enum RecorderError: Error {
         case couldNotStartRecording
