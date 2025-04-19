@@ -20,7 +20,7 @@ public actor Recorder {
     }
 
     // Starts recording to the given output file
-    func startRecordingWhisper(toOutputFile url: URL, delegate: AVAudioRecorderDelegate?) throws {
+    public func startRecordingWhisper(toOutputFile url: URL, delegate: AVAudioRecorderDelegate?) throws {
         // Configure settings: 16 kHz, mono, linear PCM (WAV format)
         let recordSettings: [String : Any] = [
             AVFormatIDKey: Int(kAudioFormatLinearPCM),
@@ -47,7 +47,7 @@ public actor Recorder {
     }
 
     // Stops recording and releases the recorder instance
-    func stopRecordingWhisper() {
+    public func stopRecordingWhisper() {
         recorder?.stop()
         recorder = nil
     }
