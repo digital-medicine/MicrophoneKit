@@ -53,12 +53,10 @@ final class AudioStorage {
 
     private func openAudioFile(buffer: AVAudioPCMBuffer, output: URL) throws -> AVAudioFile {
         let settings: [String: Any] = [
-            AVFormatIDKey: kAudioFormatLinearPCM,
-            AVSampleRateKey: 16000,
-            AVNumberOfChannelsKey: 1,
-            AVLinearPCMBitDepthKey: 16,
-            AVLinearPCMIsFloatKey: false,
-            AVLinearPCMIsBigEndianKey: false
+            AVFormatIDKey: buffer.format.settings[AVFormatIDKey] ?? kAudioFormatLinearPCM,
+            AVNumberOfChannelsKey: buffer.format.settings[AVNumberOfChannelsKey] ?? 1,
+            AVSampleRateKey: buffer.format.settings[AVSampleRateKey] ?? 44100,
+            AVLinearPCMBitDepthKey: buffer.format.settings[AVLinearPCMBitDepthKey] ?? 16
         ]
 
         do {
