@@ -42,5 +42,3 @@ MicrophoneRecordingView(fileName: "testfilename", title: "Title") { url in
 - [digital-medicine](https://github.com/digital-medicine)
 
 ---
-
-> **Note**: This is a generic README template. Please update usage examples and installation instructions based on the actual implementation details in the repository.
