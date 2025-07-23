@@ -1,14 +1,14 @@
 //
-//  MicrophoneRecordingView.swift
+//  SimpleMicrophoneRecordingView.swift
+//  MicrophoneKit
 //
-//
-//  Created by Leonard Pries on 22.08.24.
+//  Created by Florian Schweizer on 23.07.25.
 //
 
 import SwiftUI
 import AVFoundation
 
-public struct MicrophoneRecordingView: View {
+public struct SimpleMicrophoneRecordingView: View {
     private let title: String
     private let closeAction: () -> Void
     @State private var viewModel: MicrophoneRecordingViewModel
@@ -32,16 +32,17 @@ public struct MicrophoneRecordingView: View {
     public var body: some View {
         VStack {
             Text(title)
-                .font(.headline)
-            
-            audioInputPicker
+                .font(.largeTitle)
+                .fontWeight(.semibold)
             
             Spacer()
             
             AudioWaveView(viewModel: $audioWaveViewModel)
-            
+                
             Text(viewModel.timeFormatted)
-                .font(.system(size: 48, weight: .medium, design: .monospaced))
+                .font(.system(size: 48))
+                .fontWeight(.medium)
+                .fontDesign(.monospaced)
                 .padding()
             
             Spacer()
@@ -96,47 +97,4 @@ public struct MicrophoneRecordingView: View {
         .padding(.vertical, 25)
         .padding(.horizontal)
     }
-    
-    @ViewBuilder
-    private var audioInputPicker: some View {
-        VStack {
-            Text("Select Audio Input")
-                .font(.headline)
-            Picker("Select Audio Input", selection: $viewModel.audioInputManager.inputDevice) {
-                ForEach(viewModel.audioInputManager.getAllAvailableInputs() ?? [], id: \.uid) { input in
-                    Text(input.portName).tag(input as AVAudioSessionPortDescription?)
-                }
-            }
-            .pickerStyle(MenuPickerStyle())
-            .disabled(viewModel.audioStreamManager.audioStreamManagerState != .idle)
-        }
-        .padding()
-    }
 }
-
-struct IconButton: View {
-    let iconName: String
-    let label: String
-    let color: Color
-    let action: () -> Void
-    
-    var body: some View {
-        VStack {
-            Button(action: action) {
-                Image(systemName: iconName)
-                    .resizable()
-                    .foregroundColor(.white)
-                    .scaledToFit()
-                    .frame(width: 30, height: 30)
-            }
-            .frame(width: 50, height: 50)
-            .background(color)
-            .cornerRadius(10)
-            .padding(10)
-            
-            Text(label)
-                .font(.subheadline)
-        }
-    }
-}
-
