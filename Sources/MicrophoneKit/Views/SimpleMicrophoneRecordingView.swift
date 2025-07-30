@@ -63,7 +63,7 @@ public struct SimpleMicrophoneRecordingView: View {
                 if (viewModel.audioStreamManager.audioStreamManagerState == .idle) {
                     IconButton(
                         iconName: "record.circle",
-                        label: "Start",
+                        label: "Starten",
                         color: Color(red: 110 / 255, green: 186 / 255, blue: 180 / 255),
                         action: {
                         viewModel.startRecording()
@@ -71,7 +71,7 @@ public struct SimpleMicrophoneRecordingView: View {
                 } else {
                     IconButton(
                         iconName: "stop.circle",
-                        label: "Ende",
+                        label: "Fertig",
                         color: Color(red: 227 / 255, green: 128 / 255, blue: 124 / 255),
                         action: {
                         viewModel.stopRecording()
@@ -94,6 +94,9 @@ public struct SimpleMicrophoneRecordingView: View {
     @ViewBuilder
     private var instructionAction: some View {
         Button {
+            if (viewModel.audioStreamManager.audioStreamManagerState != .idle) {
+                viewModel.stopRecording()
+            }
             closeAction()
         } label: {
             Text("Weiter")
