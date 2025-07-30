@@ -85,8 +85,7 @@ public struct SimpleMicrophoneRecordingView: View {
         }
         .overlay(alignment: .topTrailing) {
 #if DEBUG
-            Toggle("Debug Modus", isOn: $debugMode)
-                .frame(width: 100)
+            Toggle("", isOn: $debugMode)
 #endif
         }
     }
