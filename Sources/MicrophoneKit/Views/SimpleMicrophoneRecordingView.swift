@@ -34,7 +34,7 @@ public struct SimpleMicrophoneRecordingView: View {
     public var body: some View {
         VStack {
             Text(title)
-                .font(.system(size: 100))
+                .font(.system(size: 50))
                 .fontWeight(.semibold)
             
             Spacer()
