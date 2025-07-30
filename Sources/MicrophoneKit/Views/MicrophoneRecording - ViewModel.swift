@@ -83,9 +83,10 @@ import SoundAnalysis
     }
     
     var timeFormatted: String {
-        let seconds = tenthsOfSecondElapsed / 10
-        let tenths = tenthsOfSecondElapsed % 10
-        return String(format: "%02d:%01d", seconds, tenths)
+        let totalSeconds = tenthsOfSecondElapsed / 10
+        let minutes = totalSeconds / 60
+        let seconds = totalSeconds % 60
+        return String(format: "%02d:%02d", minutes, seconds)
     }
     
     private func startTimer() {
