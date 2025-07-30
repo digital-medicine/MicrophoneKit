@@ -14,6 +14,8 @@ public struct SimpleMicrophoneRecordingView: View {
     @State private var viewModel: MicrophoneRecordingViewModel
     @State private var audioWaveViewModel: AudioWaveViewModel
     
+    @State private var debugMode: Bool = false
+    
     public init(
         fileName: String,
         title: String,
@@ -32,12 +34,14 @@ public struct SimpleMicrophoneRecordingView: View {
     public var body: some View {
         VStack {
             Text(title)
-                .font(.largeTitle)
+                .font(.system(size: 100))
                 .fontWeight(.semibold)
             
             Spacer()
             
-            AudioWaveView(viewModel: $audioWaveViewModel)
+            if debugMode {
+                AudioWaveView(viewModel: $audioWaveViewModel)
+            }
                 
             Text(viewModel.timeFormatted)
                 .font(.system(size: 48))
@@ -50,7 +54,7 @@ public struct SimpleMicrophoneRecordingView: View {
             HStack {
                 IconButton(
                     iconName: "arrow.clockwise",
-                    label: "Retry",
+                    label: "Nochmal",
                     color: .black,
                     action: {
                     viewModel.restart()
@@ -67,7 +71,7 @@ public struct SimpleMicrophoneRecordingView: View {
                 } else {
                     IconButton(
                         iconName: "stop.circle",
-                        label: "Stop",
+                        label: "Ende",
                         color: Color(red: 227 / 255, green: 128 / 255, blue: 124 / 255),
                         action: {
                         viewModel.stopRecording()
@@ -79,6 +83,11 @@ public struct SimpleMicrophoneRecordingView: View {
             
             instructionAction
         }
+        .overlay(alignment: .topTrailing) {
+#if DEBUG
+            Toggle("Debug Modus", isOn: $debugMode)
+#endif
+        }
     }
     
     @MainActor
@@ -87,7 +96,7 @@ public struct SimpleMicrophoneRecordingView: View {
         Button {
             closeAction()
         } label: {
-            Text("Next")
+            Text("Weiter")
                 .font(.system(size: 30))
                 .bold()
                 .frame(height: 30)
