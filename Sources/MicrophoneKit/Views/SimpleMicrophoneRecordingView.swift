@@ -108,6 +108,5 @@ public struct SimpleMicrophoneRecordingView: View {
                 .padding(.horizontal)
                 .padding(.bottom)
         }
-        .buttonStyle(.borderedProminent)
     }
 }
