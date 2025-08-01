@@ -100,13 +100,14 @@ public struct SimpleMicrophoneRecordingView: View {
             closeAction()
         } label: {
             Text("Weiter")
-                .font(.system(size: 30))
-                .bold()
-                .frame(height: 30)
+                .font(.title)
+                .padding()
                 .frame(maxWidth: .infinity)
+                .background(.blue, in: .rect(cornerRadius: 16))
+                .foregroundStyle(.white)
+                .padding(.horizontal)
+                .padding(.bottom)
         }
         .buttonStyle(.borderedProminent)
-        .padding(.vertical, 25)
-        .padding(.horizontal)
     }
 }
