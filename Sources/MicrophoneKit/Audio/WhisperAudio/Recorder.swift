@@ -51,4 +51,14 @@ public actor Recorder {
         recorder?.stop()
         recorder = nil
     }
+    
+    
+    public func currentLevel() -> Float {
+        guard let r = recorder else { return 0 }
+        r.updateMeters()
+        // avgPower: dBFS ~ [-160, 0] -> linearisieren und clampen auf 0..1
+        let dB = r.averagePower(forChannel: 0)
+        let linear = pow(10, dB / 20)
+        return max(0, min(1, linear))
+    }
 }
