@@ -38,6 +38,7 @@ public actor Recorder {
         // Prepare and start recording
         let recorder = try AVAudioRecorder(url: url, settings: recordSettings)
         recorder.delegate = delegate
+        recorder.isMeteringEnabled = true
         if recorder.record() == false {
             print("❌ Could not start recording")
             throw RecorderError.couldNotStartRecording
