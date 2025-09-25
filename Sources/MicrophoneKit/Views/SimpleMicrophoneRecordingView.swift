@@ -83,9 +83,11 @@ public struct SimpleMicrophoneRecordingView: View {
             
             instructionAction
         }
-        .overlay(alignment: .topTrailing) {
+        .toolbar {
 #if DEBUG
-            Toggle("", isOn: $debugMode)
+            Menu("Debug") {
+                Toggle("", isOn: $debugMode)
+            }
 #endif
         }
     }
@@ -105,8 +107,6 @@ public struct SimpleMicrophoneRecordingView: View {
                 .frame(maxWidth: .infinity)
                 .background(.blue, in: .rect(cornerRadius: 16))
                 .foregroundStyle(.white)
-                .padding(.horizontal)
-                .padding(.bottom)
         }
     }
 }
