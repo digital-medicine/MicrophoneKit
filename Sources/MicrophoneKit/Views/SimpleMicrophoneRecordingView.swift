@@ -10,6 +10,7 @@ import AVFoundation
 
 public struct SimpleMicrophoneRecordingView: View {
     private let title: String
+    private let fontSize: Double
     private let closeAction: () -> Void
     @State private var viewModel: MicrophoneRecordingViewModel
     @State private var audioWaveViewModel: AudioWaveViewModel
@@ -18,12 +19,15 @@ public struct SimpleMicrophoneRecordingView: View {
     
     public init(
         fileName: String,
+        fontSize: Double = 50,
         title: String,
         afterSave: @escaping (URL) -> Void,
         closeAction: @escaping () -> Void
     ) {
-        self.closeAction = closeAction
         self.title = title
+        self.fontSize = fontSize
+        self.closeAction = closeAction
+        
         let audioWave = AudioWaveViewModel()
         self._audioWaveViewModel = State(wrappedValue: audioWave)
         self._viewModel = State(wrappedValue: MicrophoneRecordingViewModel(fileName: fileName, afterSave: afterSave,  onNewData: { data in
@@ -34,7 +38,7 @@ public struct SimpleMicrophoneRecordingView: View {
     public var body: some View {
         VStack {
             Text(title)
-                .font(.system(size: 50))
+                .font(.system(size: fontSize))
                 .fontWeight(.semibold)
             
             Spacer()
@@ -83,6 +87,7 @@ public struct SimpleMicrophoneRecordingView: View {
             
             instructionAction
         }
+        .padding(.horizontal)
         .toolbar {
 #if DEBUG
             Menu("Debug", systemImage: "hammer") {
