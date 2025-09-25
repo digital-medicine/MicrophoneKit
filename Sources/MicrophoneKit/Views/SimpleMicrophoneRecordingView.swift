@@ -85,8 +85,8 @@ public struct SimpleMicrophoneRecordingView: View {
         }
         .toolbar {
 #if DEBUG
-            Menu("Debug") {
-                Toggle("", isOn: $debugMode)
+            Menu("Debug", systemImage: "hammer") {
+                Toggle("Debug Mode", isOn: $debugMode)
             }
 #endif
         }
