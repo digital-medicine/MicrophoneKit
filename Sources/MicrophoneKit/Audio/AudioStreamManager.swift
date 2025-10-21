@@ -34,7 +34,7 @@ public enum AudioStreamManagerState: Equatable {
     }
 }
 
-final class AudioStreamManager: NSObject, ObservableObject {
+final public class AudioStreamManager: NSObject, ObservableObject {
     /// Our audio stream configuration.
     var config: AudioStreamManagerConfig?
     

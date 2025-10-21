@@ -10,7 +10,7 @@ import Combine
 import Foundation
 import SoundAnalysis
 
-@Observable class MicrophoneRecordingViewModel {
+@Observable public class MicrophoneRecordingViewModel {
     public let audioStreamManager = AudioStreamManager()
     public let audioStorage = AudioStorage()
     var cancellables = Set<AnyCancellable>()

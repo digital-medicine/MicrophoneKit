@@ -8,7 +8,7 @@
 import Foundation
 import AVFoundation
 
-@Observable class AudioInputManager {
+@Observable public class AudioInputManager {
     var inputDevice: AVAudioSessionPortDescription?
     
     init() {

@@ -9,7 +9,7 @@ import AVFoundation
 import Combine
 import Foundation
 
-final class AudioStorage {
+final public class AudioStorage {
     private var cancellable: AnyCancellable?
     var audioFile: AVAudioFile?
 
