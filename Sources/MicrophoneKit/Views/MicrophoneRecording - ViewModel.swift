@@ -24,10 +24,14 @@ import SoundAnalysis
     
     // Config
     private let fileName: String
-    private let afterSave: (URL) -> Void
-    private var onNewData: (Double) -> Void
+    public var afterSave: (URL) -> Void
+    public var onNewData: (Double) -> Void
     
-    public init(fileName: String, afterSave: @escaping (URL) -> Void, onNewData: @escaping (Double) -> Void) {
+    public init(
+        fileName: String,
+        afterSave: @escaping (URL) -> Void = { _ in },
+        onNewData: @escaping (Double) -> Void = { _ in }
+    ) {
         self.fileName = fileName
         self.afterSave = afterSave
         self.onNewData = onNewData
